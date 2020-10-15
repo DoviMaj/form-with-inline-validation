@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main">
+      <form action="/action_page.php" method="post">
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required />
+          <p class="email validator"></p>
+        </div>
+
+        <div class="form-field">
+          <label for="country">Country</label>
+          <input type="text" name="country" id="country" />
+          <p class="country validator"></p>
+        </div>
+
+        <div class="form-field">
+          <label for="zipcode">Zipcode</label>
+          <input type="text" name="zipcode" id="zipcode" required />
+          <p class="zipcode validator"></p>
+        </div>
+
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input
+            type="text"
+            name="password"
+            id="password"
+            minlength="8"
+            required
+          />
+          <p class="password1 validator"></p>
+        </div>
+
+        <div class="form-field">
+          <label for="confirmation">Password Confirmation</label>
+          <input
+            type="password"
+            name="confirmation"
+            id="confirmation"
+            required
+          />
+          <p class="password2 validator"></p>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: auto;
+  gap: 6px;
+}
+
+#main {
+  width: 169px;
+  margin: auto;
+}
+
+label::after {
+  color: #e32;
+  content: " *";
+  display: inline;
+}
+
+.validator {
+  font-size: ;
+}
