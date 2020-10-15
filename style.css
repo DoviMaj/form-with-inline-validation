@@ -1,9 +1,19 @@
+body {
+  font-family: sans-serif;
+  color: #edf5e1;
+  font-size: 17px;
+}
+
 form {
   display: flex;
   flex-direction: column;
   width: fit-content;
   margin: auto;
   gap: 6px;
+  background: #5cdb95;
+  padding: 25px;
+  box-shadow: 1px 6px 7px 7px #5da27c;
+  border-radius: 5px;
 }
 
 #main {
@@ -17,6 +27,11 @@ label::after {
   display: inline;
 }
 
-.validator {
-  font-size: ;
+.form.validator {
+  color: #5cdb95;
+}
+
+#form-validator {
+  display: flex;
+  justify-content: flex-end;
 }
