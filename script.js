@@ -46,3 +46,15 @@ country.addEventListener("blur", () => {
     countryValidator.innerHTML = "Do you really live there?";
   }
 });
+
+let zipcode = document.querySelector("#zipcode");
+let zipcodeValidator = document.querySelector(".zipcode");
+const zipcodeVal = RegExp("^[0-9]+$");
+
+zipcode.addEventListener("blur", () => {
+  if (zipcodeVal.test(zipcode.value)) {
+    zipcodeValidator.innerHTML = "yeah";
+  } else {
+    zipcodeValidator.innerHTML = "I dont think so";
+  }
+});
