@@ -1,60 +1,131 @@
-// display error messege when leaving the input / blur
+const emailEvent = () => {
+  let email = document.getElementById("email");
+  let validationMsg = document.querySelector(".email");
+  email.addEventListener("blur", () => {
+    if (emailCheck()) {
+      validationMsg.innerHTML = "YEY! &#129304;";
+    } else {
+      validationMsg.innerHTML = "please provide a valid email account";
+    }
+  });
+};
 
-let email = document.getElementById("email");
-let validator = document.querySelector(".email");
-
-email.addEventListener("blur", () => {
+const emailCheck = () => {
+  let email = document.getElementById("email");
   if (email.validity.valid) {
-    validator.innerHTML = "YEY! &#129304;";
-  } else {
-    validator.innerHTML = "please provide a valid email account";
+    return true;
   }
-});
+};
 
-let password = document.querySelector("#password");
-let firstPasswordValidator = document.querySelector(".password1");
-const passwordValidator = RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.{8,})");
+const passwordEvent = () => {
+  let password = document.querySelector("#password");
+  let firstPasswordValidatorMsg = document.querySelector(".password1");
+  password.addEventListener("blur", () => {
+    if (passwordCheck()) {
+      firstPasswordValidatorMsg.innerHTML = "u got this! &#128077";
+    } else {
+      firstPasswordValidatorMsg.innerHTML =
+        "Minimum eight characters, at least one Upper case letter and one number:";
+    }
+  });
+};
 
-password.addEventListener("blur", () => {
+const passwordCheck = () => {
+  let password = document.querySelector("#password");
+  const passwordValidator = RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.{8,})");
   if (password.validity.valid && passwordValidator.test(password.value)) {
-    firstPasswordValidator.innerHTML = "u got this! &#128077";
-  } else {
-    firstPasswordValidator.innerHTML =
-      "Minimum eight characters, at least one Upper case letter and one number:";
+    return true;
   }
-});
+};
 
-let password2 = document.querySelector("#confirmation");
-let secondPasswordValidator = document.querySelector(".password2");
+const password2Event = () => {
+  let password2 = document.querySelector("#confirmation");
+  password2.addEventListener("input", () => {
+    let secondPasswordValidatorMsg = document.querySelector(".password2");
+    if (password2Check()) {
+      secondPasswordValidatorMsg.innerHTML = "A perfect match &#128143;";
+    } else {
+      secondPasswordValidatorMsg.innerHTML = "Does not match..";
+    }
+  });
+};
 
-password2.addEventListener("input", () => {
+const password2Check = () => {
+  let password2 = document.querySelector("#confirmation");
   if (password2.value === password.value) {
-    secondPasswordValidator.innerHTML = "A perfect match &#128143;";
-  } else {
-    secondPasswordValidator.innerHTML = "Does not match..";
+    return true;
   }
-});
+};
 
-let country = document.querySelector("#country");
-let countryValidator = document.querySelector(".country");
-const validatorCT = RegExp("^[a-zA-Z]+$");
+const countryEvent = () => {
+  let country = document.querySelector("#country");
+  let countryValidatorMsg = document.querySelector(".country");
+  country.addEventListener("blur", () => {
+    if (countryCheck()) {
+      countryValidatorMsg.innerHTML = "Cool! 🏠";
+    } else {
+      countryValidatorMsg.innerHTML = "Do you really live there?";
+    }
+  });
+};
 
-country.addEventListener("blur", () => {
+const countryCheck = () => {
+  let country = document.querySelector("#country");
+  const validatorCT = RegExp("^[a-zA-Z]+$");
   if (validatorCT.test(country.value)) {
-    countryValidator.innerHTML = "Cool! 🏠";
-  } else {
-    countryValidator.innerHTML = "Do you really live there?";
+    return true;
   }
-});
+};
 
-let zipcode = document.querySelector("#zipcode");
-let zipcodeValidator = document.querySelector(".zipcode");
-const zipcodeVal = RegExp("^[0-9]+$");
+const zipcodeEvent = () => {
+  let zipcode = document.querySelector("#zipcode");
+  let zipcodeValidatorMsg = document.querySelector(".zipcode");
+  zipcode.addEventListener("blur", () => {
+    if (zipcodeCheck()) {
+      zipcodeValidatorMsg.innerHTML = "yeah";
+    } else {
+      zipcodeValidatorMsg.innerHTML = "I dont think so";
+    }
+  });
+};
 
-zipcode.addEventListener("blur", () => {
+const zipcodeCheck = () => {
+  let zipcode = document.querySelector("#zipcode");
+  const zipcodeVal = RegExp("^[0-9]+$");
   if (zipcodeVal.test(zipcode.value)) {
-    zipcodeValidator.innerHTML = "yeah";
-  } else {
-    zipcodeValidator.innerHTML = "I dont think so";
+    return true;
   }
-});
+};
+
+const checkForm = () => {
+  if (
+    zipcodeCheck() &&
+    countryCheck() &&
+    emailCheck() &&
+    passwordCheck() &&
+    password2Check()
+  ) {
+    cleanFields();
+    document.querySelector(".form").innerHTML =
+      "U did it! Congrats! &#129309; &#128526;";
+    return false;
+  } else {
+    document.querySelector(".form").innerHTML = "Almost there...";
+    return false;
+  }
+};
+
+const cleanFields = () => {
+  document.querySelectorAll("input").forEach((input) => {
+    input.value = "";
+  });
+  document.querySelectorAll(".validator").forEach((msg) => {
+    msg.innerHTML = "";
+  });
+};
+
+zipcodeEvent();
+countryEvent();
+emailEvent();
+passwordEvent();
+password2Event();
